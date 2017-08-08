@@ -11,8 +11,14 @@ const argv = yargs
       string: true
     }
   })
+  .help()
+  .alias('help', 'h')
+  .argv;
 
-const url = 'https://maps.googleapis.com/maps/api/geocode/json?address=Via%20della%20Lungara,%20233,%2000165%20Roma%20RM,%20Italy'
+const address = encodeURIComponent(argv.address);
+
+const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${address}`
+
 request({
   url,
   json: true,
